@@ -1,0 +1,15 @@
+{
+  "id": "hello-world",
+  "cmd": "",
+  "env": { "PORT": "8000" },
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "idock.daumkakao.io/hello:latest",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "containerPort": 8000 }
+      ]
+    }
+  }
+}
