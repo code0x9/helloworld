@@ -13,4 +13,9 @@ func main() {
 	log.Println(src)
 	log.Println(out)
 	log.Println(out[len(out)-1])
+
+	tt := [][]string{
+		[]string{"aa", "bb"},
+	}
+	log.Println(tt)
 }

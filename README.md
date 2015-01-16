@@ -1,7 +1,6 @@
 ## startup
 
 
-
 sudo systemctl enable chronos.service
 sudo service chronos start
 ```
