@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/zenazn/goji"
 	"net/http"
 	"os"
+
+	"github.com/zenazn/goji"
 )
 
 func main() {
@@ -14,6 +15,6 @@ func main() {
 
 func index(w http.ResponseWriter, r *http.Request) {
 	hostname, _ := os.Hostname()
-	fmt.Fprintf(w, "Hello World! I'm on %v", hostname)
+	fmt.Fprintf(w, "Hello World! I'm on %v, Version %v", hostname, 1)
 	return
 }
