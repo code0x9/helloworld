@@ -15,6 +15,6 @@ func main() {
 
 func index(w http.ResponseWriter, r *http.Request) {
 	hostname, _ := os.Hostname()
-	fmt.Fprintf(w, "Hello World! I'm on %v, Version %v", hostname, 1)
+	fmt.Fprintf(w, "Hello World! I'm on %v, Version %v", hostname, 0)
 	return
 }
