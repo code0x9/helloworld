@@ -1,4 +1,4 @@
 FROM golang:onbuild
 MAINTAINER Niko Bellic <niko.bellic@daumkakao.com>
 
-EXPOSE 8000
+EXPOSE 8080
