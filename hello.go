@@ -18,13 +18,16 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 )
 
 func main() {
+	hostname, _ := os.Hostname()
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		hostname, _ := os.Hostname()
+		log.Println("hello there")
 		fmt.Fprintf(w, "Hello World! I'm on %v, Version %v", hostname, 1)
 	})
 	if err := http.ListenAndServe(":8080", nil); err != nil {
