@@ -25,10 +25,10 @@ import (
 
 func main() {
 	hostname, _ := os.Hostname()
-
+	version := 2
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("hello there")
-		fmt.Fprintf(w, "Hello World! I'm on %v, Version %v", hostname, 1)
+		fmt.Fprintf(w, "Hello World! I'm on %v, Version %v", hostname, version)
 	})
 	http.HandleFunc("/_status", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "OK")
