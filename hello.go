@@ -25,7 +25,7 @@ import (
 
 func main() {
 	hostname, _ := os.Hostname()
-	version := 2
+	version := 3
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("hello there")
 		fmt.Fprintf(w, "Hello World! I'm on %v, Version %v", hostname, version)
