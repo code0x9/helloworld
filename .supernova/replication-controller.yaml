@@ -12,7 +12,16 @@ spec:
         app: helloworld
     spec:
       containers:
-        - name: helloworld
-          image: docker-reg.krane.iwilab.com/niko-bellic/helloworld
-          ports:
-            - containerPort: 8080
+      - name: helloworld
+        image: docker-reg.krane.iwilab.com/supernova/helloworld
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          # an http probe
+          httpGet:
+            path: /_status
+            port: 8080
+          # length of time to wait for a pod to initialize
+          # after pod startup, before applying health checking
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
