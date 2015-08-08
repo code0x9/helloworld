@@ -10,10 +10,11 @@ spec:
     metadata:
       labels:
         app: helloworld
+        stage: dev
     spec:
       containers:
       - name: helloworld
-        image: docker-reg.krane.iwilab.com/supernova/helloworld
+        image: docker-reg.krane.iwilab.com/c8/helloworld
         ports:
         - containerPort: 8080
         livenessProbe:
@@ -25,3 +26,17 @@ spec:
           # after pod startup, before applying health checking
           initialDelaySeconds: 5
           timeoutSeconds: 1
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+spec:
+  selector:
+    app: helloworld
+    stage: dev
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
