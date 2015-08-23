@@ -26,17 +26,3 @@ spec:
           # after pod startup, before applying health checking
           initialDelaySeconds: 5
           timeoutSeconds: 1
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: helloworld-dev-service
-spec:
-  selector:
-    app: helloworld
-    phase: dev
-  ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 8080
