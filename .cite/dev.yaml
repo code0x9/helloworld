@@ -35,6 +35,7 @@ spec:
   selector:
     app: helloworld
     phase: dev
+  type: NodePort
   ports:
     - name: http
       protocol: TCP
