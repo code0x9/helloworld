@@ -1,0 +1,12 @@
+phase:
+  
+  - name: develop
+    env:
+      - PHASE=develop
+      - ENV_SAMPLE="I'm on develop."
+  
+  - name: release
+    env:
+      - PHASE=release
+      - ENV_SAMPLE="I'm on release."
+  
