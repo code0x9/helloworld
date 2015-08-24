@@ -25,14 +25,18 @@ import (
 
 func main() {
 	hostname, _ := os.Hostname()
+	phase := os.Getenv("PHASE")
 	version := 3
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("hello there")
-		fmt.Fprintf(w, "Hello World! I'm on %v, Version %v", hostname, version)
+		fmt.Fprintf(w, "Hello World! I'm on %v, phase: %v, version %v", hostname, phase, version)
 	})
+
 	http.HandleFunc("/_status", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "OK")
 	})
+
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic("ListenAndServe: " + err.Error())
 	}
