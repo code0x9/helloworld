@@ -26,7 +26,7 @@ import (
 func main() {
 	hostname, _ := os.Hostname()
 	phase := os.Getenv("PHASE")
-	version := 3
+	version := 4
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("hello there")
