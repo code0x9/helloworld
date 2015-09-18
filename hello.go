@@ -25,12 +25,12 @@ import (
 
 func main() {
 	hostname, _ := os.Hostname()
-	phase := os.Getenv("PHASE")
-	version := 5
+	branch := os.Getenv("BRANCH")
+	version := 7
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("hello there")
-		fmt.Fprintf(w, "Hello World! I'm on %v, phase: %v, version %v", hostname, phase, version)
+		fmt.Fprintf(w, "Hello World! I'm on %v, phase: %v, version %v", hostname, branch, version)
 	})
 
 	http.HandleFunc("/_status", func(w http.ResponseWriter, r *http.Request) {
