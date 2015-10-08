@@ -1,0 +1,4 @@
+web:
+  image: cite-docker-reg.c.9rum.cc/test:latest
+  ports:
+    - 8080

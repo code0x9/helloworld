@@ -21,16 +21,20 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
 func main() {
 	hostname, _ := os.Hostname()
-	branch := os.Getenv("BRANCH")
-	version := 7
+	version := 15
+	STARTUP_DELAY := 5
+	log.Printf("starting... (waits %v seconds.)", STARTUP_DELAY)
+	time.Sleep(time.Duration(STARTUP_DELAY) * time.Second)
+	log.Printf("started")
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("hello there")
-		fmt.Fprintf(w, "Hello World! I'm on %v, phase: %v, version %v", hostname, branch, version)
+		fmt.Fprintf(w, "Hello World! I'm on %v, version %v\n", hostname, version)
 	})
 
 	http.HandleFunc("/_status", func(w http.ResponseWriter, r *http.Request) {
