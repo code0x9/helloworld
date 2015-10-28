@@ -21,16 +21,36 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 	"time"
+)
+
+var (
+	listenAddr = "0.0.0.0"
+	listenPort = 8080
+	version    = 20
+	delay      = 0
 )
 
 func main() {
 	hostname, _ := os.Hostname()
-	version := 15
-	STARTUP_DELAY := 5
-	log.Printf("starting... (waits %v seconds.)", STARTUP_DELAY)
-	time.Sleep(time.Duration(STARTUP_DELAY) * time.Second)
-	log.Printf("started")
+	if len(os.Getenv("VERSION")) > 0 {
+		version, _ = strconv.Atoi(os.Getenv("VERSION"))
+	}
+	if len(os.Getenv("ADDR")) > 0 {
+		listenAddr = os.Getenv("ADDR")
+	}
+	if len(os.Getenv("PORT")) > 0 {
+		listenPort, _ = strconv.Atoi(os.Getenv("PORT"))
+	}
+	if len(os.Getenv("DELAY")) > 0 {
+		delay, _ = strconv.Atoi(os.Getenv("DELAY"))
+	}
+
+	if delay > 0 {
+		log.Printf("starting... (waits %v seconds.)", delay)
+		time.Sleep(time.Duration(delay) * time.Second)
+	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("hello there")
@@ -41,7 +61,9 @@ func main() {
 		fmt.Fprint(w, "OK")
 	})
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	listenAddr := fmt.Sprintf("%v:%v", listenAddr, listenPort)
+	log.Println("server started. listening " + listenAddr)
+	if err := http.ListenAndServe(listenAddr, nil); err != nil {
 		panic("ListenAndServe: " + err.Error())
 	}
 }
