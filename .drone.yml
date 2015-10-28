@@ -14,5 +14,5 @@ publish:
     environment:
       - DOCKER_LAUNCH_DEBUG=true
     repo: cite-docker-reg.c.9rum.cc/niko-bellic/helloworld
-    tag: $BRANCH
+    tag: $$BRANCH
 
