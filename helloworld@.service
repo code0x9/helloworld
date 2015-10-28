@@ -1,0 +1,18 @@
+[Unit]
+Description=helloworld
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker stop helloworld-%i
+ExecStartPre=-/usr/bin/docker rm helloworld-%i
+ExecStartPre=/usr/bin/docker pull cite-docker-reg.c.9rum.cc/niko/helloworld:latest
+ExecStart=/usr/bin/docker run --rm -P  \
+    --name helloworld-%i  \
+    -e DELAY=0  \
+    cite-docker-reg.c.9rum.cc/niko/helloworld:latest
+ExecStop=/usr/bin/docker stop helloworld-%i
+
+[X-Fleet]
+Conflicts=helloworld@*.service

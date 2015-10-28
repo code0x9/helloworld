@@ -1,0 +1,11 @@
+clone:
+  path: kakao/niko-bellic/helloworld
+
+build:
+  image: golang:onbuild
+  environment:
+    - GO15VENDOREXPERIMENT=1
+  commands:
+    - go get
+    - go build
+
