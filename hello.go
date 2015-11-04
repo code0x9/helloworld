@@ -53,7 +53,7 @@ func main() {
 	}
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Println("hello there")
+		log.Println("hello there.")
 		fmt.Fprintf(w, "Hello World! I'm on %v, version %v\n", hostname, version)
 	})
 
