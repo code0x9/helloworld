@@ -28,7 +28,7 @@ import (
 var (
 	listenAddr = "0.0.0.0"
 	listenPort = 8080
-	version    = 29
+	version    = 30
 	delay      = 0
 )
 
