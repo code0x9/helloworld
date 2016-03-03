@@ -1,0 +1,8 @@
+FROM alpine
+MAINTAINER Niko Bellic <niko.bellic@daumkakao.com>
+
+ADD helloworld /
+
+EXPOSE 8080
+
+CMD ["/helloworld"]

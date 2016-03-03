@@ -47,6 +47,10 @@ func main() {
 		delay, _ = strconv.Atoi(os.Getenv("DELAY"))
 	}
 
+	if os.Getenv("CRASH") != "" {
+		panic(fmt.Errorf(`CRASH!!!`))
+	}
+
 	if delay > 0 {
 		log.Printf("starting... (waits %v seconds.)", delay)
 		time.Sleep(time.Duration(delay) * time.Second)
