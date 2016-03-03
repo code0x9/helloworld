@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-### date modified: 2016년 2월  2일 화요일 13시 51분 16초 KST/
+### date modified: 2016년 3월  3일 목요일 13시 59분 21초 KST/
 sed -i "2 d" $0
 sed -i "2 i ### date modified: $(date)/" $0
 
