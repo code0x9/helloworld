@@ -1,7 +1,8 @@
 FROM alpine
 MAINTAINER Niko Bellic <niko.bellic@daumkakao.com>
 
-ADD helloworld /
+COPY helloworld /
+COPY VERSION
 
 EXPOSE 8080
 

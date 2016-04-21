@@ -18,6 +18,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -28,15 +29,11 @@ import (
 var (
 	listenAddr = "0.0.0.0"
 	listenPort = 8080
-	version    = 33
 	delay      = 0
 )
 
 func main() {
 	hostname, _ := os.Hostname()
-	if len(os.Getenv("VERSION")) > 0 {
-		version, _ = strconv.Atoi(os.Getenv("VERSION"))
-	}
 	if len(os.Getenv("ADDR")) > 0 {
 		listenAddr = os.Getenv("ADDR")
 	}
@@ -56,9 +53,16 @@ func main() {
 		time.Sleep(time.Duration(delay) * time.Second)
 	}
 
+	version, err := ioutil.ReadFile("VERSION")
+	if err != nil {
+		log.Println("VERSION file read error: %v", err)
+		version = []byte("-1")
+	}
+	log.Printf("version: %s", version)
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Println("hello there.")
-		fmt.Fprintf(w, "Hello World! I'm on %v, version %v\n", hostname, version)
+		fmt.Fprintf(w, "Hello World! I'm on %v, version %s\n", hostname, version)
 	})
 
 	http.HandleFunc("/_status", func(w http.ResponseWriter, r *http.Request) {
