@@ -1,4 +1,4 @@
-FROM golang:onbuild
+FRO!M golang:onbuild
 MAINTAINER Niko Bellic <niko.bellic@daumkakao.com>
 
 COPY VERSION /go/bin/VERSION
