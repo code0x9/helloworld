@@ -18,26 +18,60 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"strconv"
+	"time"
+)
+
+var (
+	listenAddr = "0.0.0.0"
+	listenPort = 8080
+	delay      = 0
 )
 
 func main() {
 	hostname, _ := os.Hostname()
-	branch := os.Getenv("BRANCH")
-	version := 7
+	if len(os.Getenv("ADDR")) > 0 {
+		listenAddr = os.Getenv("ADDR")
+	}
+	if len(os.Getenv("PORT")) > 0 {
+		listenPort, _ = strconv.Atoi(os.Getenv("PORT"))
+	}
+	if len(os.Getenv("DELAY")) > 0 {
+		delay, _ = strconv.Atoi(os.Getenv("DELAY"))
+	}
+
+	if os.Getenv("CRASH") != "" {
+		panic(fmt.Errorf(`CRASH!!!`))
+	}
+
+	if delay > 0 {
+		log.Printf("starting... (waits %v seconds.)", delay)
+		time.Sleep(time.Duration(delay) * time.Second)
+	}
+
+	version, err := ioutil.ReadFile("VERSION")
+	if err != nil {
+		log.Println("VERSION file read error: %v", err)
+		version = []byte("-1")
+	}
+	log.Printf("version: %s", version)
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Println("hello there")
-		fmt.Fprintf(w, "Hello World! I'm on %v, phase: %v, version %v", hostname, branch, version)
+		log.Println("hello there.")
+		fmt.Fprintf(w, "Hello World! I'm on %v, version %s\n", hostname, version)
 	})
 
 	http.HandleFunc("/_status", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "OK")
 	})
 
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	listenAddr := fmt.Sprintf("%v:%v", listenAddr, listenPort)
+	log.Println("server started. listening " + listenAddr)
+	if err := http.ListenAndServe(listenAddr, nil); err != nil {
 		panic("ListenAndServe: " + err.Error())
 	}
 }

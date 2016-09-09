@@ -1,0 +1,19 @@
+clone:
+  path: kakao/niko-bellic/helloworld
+
+build:
+  image: golang:onbuild
+  environment:
+    - GO15VENDOREXPERIMENT=1
+  commands:
+    - go get
+    - go build
+
+#publish:
+  #docker:
+    #environment:
+      #- DOCKER_LAUNCH_DEBUG=true
+    #repo: cite-docker-reg.c.9rum.cc/niko-bellic/helloworld
+    #tag: $$BRANCH
+
+
