@@ -1,9 +1,0 @@
-FROM alpine
-MAINTAINER Niko Bellic <niko.bellic@daumkakao.com>
-
-COPY helloworld /helloworld
-COPY VERSION /VERSION
-
-EXPOSE 8080
-
-CMD ["/helloworld"]
