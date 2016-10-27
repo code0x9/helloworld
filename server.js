@@ -1,5 +1,5 @@
 const port = 8080
-const version = 23
+const version = 24
 let http = require('http')
 
 http.createServer(function(request, response) {
