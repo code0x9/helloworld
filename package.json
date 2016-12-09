@@ -1,8 +1,8 @@
 {
   "name": "helloworld",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Node.js sample on Docker",
-  "author": "seung lee <code0x9@gmail.com>",
+  "author": "Mark Lee <code0x9@gmail.com>",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
