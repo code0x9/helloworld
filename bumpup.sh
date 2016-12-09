@@ -5,5 +5,5 @@ NEW_VER=$(($VER + 1))
 echo "current version: $VER, new version: $NEW_VER"
 sed -i "s/$VERSION_STRING $VER$/$VERSION_STRING $NEW_VER/" server.js
 
-# git commit -am "bumpup to $NEW_VER"
-# git push public master
+git commit -am "bumpup to $NEW_VER"
+git push public master
